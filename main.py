@@ -28,7 +28,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://ai-study-assistant-cvarvx0x6-tunmise-s-projects360.vercel.app"
+        "https://ai-study-assistant-sepia-rho.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
