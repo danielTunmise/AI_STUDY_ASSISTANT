@@ -18,6 +18,10 @@ app = FastAPI(
     redirect_slashes=False  # Prevents 307 redirects on POST requests which often strip CORS headers
 )
 
+@app.get("/")
+async def health_check():
+    return {"status": "awake", "message": "Service is running 24/7"}
+
 # Ensure proper CORS Handling
 app.add_middleware(
     CORSMiddleware,
