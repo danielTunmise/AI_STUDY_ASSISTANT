@@ -11,7 +11,7 @@ import { Button } from "./components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardContent } from "./components/ui/card";
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = 'https://ai-study-assistant-g21b.onrender.com';
 
 // --- Subcomponents ---
 
