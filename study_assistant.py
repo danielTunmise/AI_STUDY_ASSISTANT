@@ -2,7 +2,7 @@ import os
 from pydantic import BaseModel, Field
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from langchain_groq import ChatGroq
 from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import ChatPromptTemplate
@@ -10,7 +10,10 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 load_dotenv()
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+embeddings = HuggingFaceInferenceAPIEmbeddings(
+    api_key=os.environ.get("HF_TOKEN"),
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
 CHROMA_PATH = "chroma_db"
 LLM_MODEL = "llama-3.3-70b-versatile"
 
