@@ -26,7 +26,10 @@ async def health_check():
 # Ensure proper CORS Handling
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows requests from any domain (like Vercel)
+    allow_origins=[
+        "http://localhost:5173",
+        "https://ai-study-assistant-cvarvx0x6-tunmise-s-projects360.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
