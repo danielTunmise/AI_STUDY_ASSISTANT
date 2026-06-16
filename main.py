@@ -19,6 +19,7 @@ app = FastAPI(
 )
 
 @app.get("/")
+@app.head("/")
 async def health_check():
     return {"status": "awake", "message": "Service is running 24/7"}
 
