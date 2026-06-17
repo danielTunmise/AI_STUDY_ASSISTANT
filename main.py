@@ -58,8 +58,8 @@ class NotesRequest(BaseModel):
 
 @app.post("/upload")
 async def upload_document(file: UploadFile = File(...)):
-    if not file.filename.lower().endswith(".pdf"):
-        raise HTTPException(status_code=400, detail="Only PDF files are supported.")
+    if not file.filename.lower().endswith((".pdf", ".doc", ".docx")):
+        raise HTTPException(status_code=400, detail="Only PDF, DOC, and DOCX files are supported.")
     
     # Use a unique temp file to avoid collisions if multiple requests happen
     temp_dir = tempfile.gettempdir()

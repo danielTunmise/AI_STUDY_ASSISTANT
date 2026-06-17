@@ -246,7 +246,11 @@ export default function App() {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { 'application/pdf': ['.pdf'] },
+    accept: { 
+      'application/pdf': ['.pdf'],
+      'application/msword': ['.doc'],
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx']
+    },
     maxFiles: 1
   });
 
@@ -509,7 +513,7 @@ export default function App() {
                     {fileName ? `Uploaded: ${fileName}` : "Upload your study material"}
                   </h3>
                   <p className="text-slate-500 font-medium text-center max-w-md">
-                    Drag & drop your PDF file here, or click to browse your computer
+                    Drag & drop your PDF or Word document here, or click to browse your computer
                   </p>
                 </>
               )}

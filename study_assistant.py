@@ -1,6 +1,6 @@
 import os
 from pydantic import BaseModel, Field
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader, UnstructuredWordDocumentLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_groq import ChatGroq
@@ -19,7 +19,15 @@ CHROMA_PATH = "chroma_db"
 LLM_MODEL = "llama-3.3-70b-versatile"
 
 def process_document(file_path: str):
-    loader = PyPDFLoader(file_path)
+    file_path_lower = file_path.lower()
+    if file_path_lower.endswith(".pdf"):
+        loader = PyPDFLoader(file_path)
+    elif file_path_lower.endswith(".docx"):
+        loader = Docx2txtLoader(file_path)
+    elif file_path_lower.endswith(".doc"):
+        loader = UnstructuredWordDocumentLoader(file_path)
+    else:
+        raise ValueError(f"Unsupported file format: {file_path}")
     documents = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, length_function=len)
     chunks = text_splitter.split_documents(documents)
